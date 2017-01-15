@@ -25,4 +25,5 @@
 
 ul {
   list-style-type: none;
+  text-transform: capitalize;
 }
