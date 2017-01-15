@@ -47,6 +47,7 @@ class Song extends React.Component {
           ref={(text) => this.song = text}
           defaultValue={playlists[uniquePostCode].song}
           onKeyPress={(e) => this.keyPress(e)} />
+        <div className="cancel">
         <button
           type="submit"
           onClick={() => this.handleEdit(uniquePostCode)}
@@ -59,6 +60,7 @@ class Song extends React.Component {
           className="flat">
           Cancel
         </button>
+        </div>
       </div>
     )
   }
@@ -68,8 +70,20 @@ class Song extends React.Component {
     return (
       <li className="flexLi">
         <p>{playlists[uniquePostCode].song} by {playlists[uniquePostCode].artist}</p>
-        <button type="submit" onClick={() => this.setState({edit: !this.state.edit})} className="flat">Edit</button>
-        <button type="submit" onClick={() => this.handleDelete(uniquePostCode)}>Delete</button>
+        <div className="buttons">
+        <button
+          type="submit"
+          onClick={() => this.setState({edit: !this.state.edit})}
+          className="flat">
+        Edit
+        </button>
+        <button
+          type="submit"
+          onClick={() => this.handleDelete(uniquePostCode)}
+          className="flat">
+        Delete
+        </button>
+        </div>
       </li>
     )
   }

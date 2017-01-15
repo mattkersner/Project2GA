@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 10s linear;
   height: 80px;
 }
 
@@ -14,16 +14,144 @@
   color: white;
 }
 
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 ul {
+  max-height: 480px;
+  margin-top: 15px;
+  font-size: 13px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 0;
+}
+
+input[type="text"] {
+  font-size: 1.2em;
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+  margin: 2px;
+}
+
+input[type="text"]:focus,
+input[type="text"].focus {
+  border-bottom: solid 2px #969696;
+  outline: none;
+}
+
+.flat {
+  color: #fff;
+  background-color: #6496c8;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+  margin: 2px;
+}
+
+.flat:hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+.flat:active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+textarea {
+  height: 25px;
+  width: 120px;
+  padding: 10px;
+  resize: none;
+  font-size: 1.2em;
+  display: inline-block;
+}
+
+.flexUl {
+  animation: slide 2s linear;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 1.2em;
+  margin: auto;
+  width: 80%;
+  margin-top: 10px;
+}
+
+.flexLi {
+  display: flex;
+  justify-content: space-between;
   list-style-type: none;
+  padding: 15px;
+  border-bottom: 1px solid grey;
+  margin: 10px;
+}
+
+.flexLi:hover {
+  background-color: lightblue;
+}
+
+.flexLi p {
+  margin-left: 30px;
+  margin-bottom: 0;
+  padding-bottom: 0;
   text-transform: capitalize;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  text-transform: capitalize;
+}
+
+.updateRender {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+}
+
+.cancel {
+  display: flex;
+}
+
+.spacing {
+  margin-top: 40px;
+}
+
+#button {
+  height: 25px;
+  width: 50px;
+}
+
+.buttons {
+  margin-top: 15px;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: opacity 1s ease-in;
 }

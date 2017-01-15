@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Input from './components/Input';
 import Song from './components/Song';
 import Playlist from './components/Playlist';
+import InputPlaylistName from './components/InputPlaylistName';
 import axios from 'axios';
-import logo from './logo.svg';
+import logo from './music.png';
 import './App.css';
 
 class App extends Component {
@@ -12,9 +13,13 @@ class App extends Component {
     super();
     this.state = {
       playlists: {},
+      playlistName: "",
+      enterName: true
     }
     this.getSongs = this.getSongs.bind(this);
     this.addSong = this.addSong.bind(this);
+    this.setPlaylistName = this.setPlaylistName.bind(this);
+    this.editPlaylistName = this.editPlaylistName.bind(this);
   }
 
   componentDidMount() {
@@ -48,47 +53,44 @@ class App extends Component {
     }
   }
 
+  setPlaylistName(name) {
+    this.setState({ playlistName: name, enterName: false})
+  }
+
+  editPlaylistName(name) {
+    this.setState({ playlistName: name })
+  }
+
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+    if (this.state.enterName) {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Create a New Playlist</h2>
+          </div>
+          <InputPlaylistName
+            setPlaylistName={this.setPlaylistName}
+            playlistName={this.state.playlistName}
+            setPlaylistCode={this.setPlaylistCode} />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Input getSongs={this.getSongs} />
-        <Playlist addSong={this.addSong} />
-      </div>
-    );
+      );
+      } else {
+        return (
+          <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Create a New Playlist</h2>
+          </div>
+          <Input getSongs={this.getSongs} />
+          <Playlist
+            addSong={this.addSong}
+            playlistName={this.state.playlistName}
+            editPlaylistName={this.editPlaylistName} />
+        </div>
+        );
+      }
   }
 }
 
 export default App;
-
-//<InputPlaylistName setPlaylistName={this.setPlaylistName} />
-
-// this.setPlaylistName = this.setPlaylistName.bind(this);
-// this.addPlaylistName = this.addPlaylistName.bind(this);
-
-// import PlaylistName from './components/PlaylistName';
-// import InputPlaylistName from './components/InputPlaylistName';
-
-// setPlaylistName(name) {
-//     this.setState({ playlistName: name })
-//   }
-
-//   addPlaylistName() {
-//     let playlistName = Object.keys(this.state.playlists)
-//       .map((key, i) => {
-//         return (
-//           <PlaylistName
-//             key={key}
-//             uniquePostCode={key}
-//             playlists={this.state.playlists}
-//             name={this.state.playlistName} />
-//         )
-//       })
-//       return playlistName;
-//   }

@@ -30,13 +30,15 @@ class Input extends React.Component {
         <input
           type="text"
           ref={(input) => this.artist = input}
-          placeholder="Artist" />
+          placeholder="Artist"
+          autoFocus="autofocus" />
         <input
           type="text"
           ref={(input) => this.song = input}
           onKeyPress={(e) => this.keyPress(e)}
           placeholder="Song" />
         <button
+          id="button"
           type="submit"
           onClick={() => this.createPlaylist()}
           className="flat">

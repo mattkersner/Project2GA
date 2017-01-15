@@ -1,19 +1,17 @@
 import React from 'react';
-import axios from 'axios';
 
 class InputPlaylistName extends React.Component {
 
   namePlaylist() {
-    axios({
-      method: 'POST',
-      url: 'https://music-playlist-app-4acd6.firebaseio.com/playlists.json',
-      data: {
-        playlistName: this.playlistName.value
-      }
-    }).then(() => {
       this.props.setPlaylistName(this.playlistName.value);
       this.playlistName.value = "";
-    })
+  }
+
+  keyPress(e) {
+    if (e.charCode === 13) {
+      this.props.setPlaylistName(this.playlistName.value);
+      this.playlistName.value = "";
+    }
   }
 
   render() {
@@ -23,7 +21,8 @@ class InputPlaylistName extends React.Component {
           type="text"
           ref={(input) => this.playlistName = input}
           placeholder="Name Your Playlist"
-          autoFocus="autofocus"/>
+          autoFocus="autofocus"
+          onKeyPress={(e) => this.keyPress(e)} />
         <button
           type="submit"
           onClick={() => this.namePlaylist()}
