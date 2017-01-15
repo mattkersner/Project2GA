@@ -26,7 +26,7 @@ class App extends Component {
     .then((res) => {
       console.log(res);
       this.setState({
-        playlists: res.data
+        playlists: res.data,
       })
     })
   }
@@ -37,11 +37,11 @@ class App extends Component {
       .reverse()
       .map((key, i) => {
         return (
-          <Song
-            key={key}
-            getSongs={this.getSongs}
-            uniquePostCode={key}
-            playlists={this.state.playlists} />
+            <Song
+              key={key}
+              getSongs={this.getSongs}
+              uniquePostCode={key}
+              playlists={this.state.playlists} />
         )
       })
     return playlist;
@@ -66,3 +66,29 @@ class App extends Component {
 }
 
 export default App;
+
+//<InputPlaylistName setPlaylistName={this.setPlaylistName} />
+
+// this.setPlaylistName = this.setPlaylistName.bind(this);
+// this.addPlaylistName = this.addPlaylistName.bind(this);
+
+// import PlaylistName from './components/PlaylistName';
+// import InputPlaylistName from './components/InputPlaylistName';
+
+// setPlaylistName(name) {
+//     this.setState({ playlistName: name })
+//   }
+
+//   addPlaylistName() {
+//     let playlistName = Object.keys(this.state.playlists)
+//       .map((key, i) => {
+//         return (
+//           <PlaylistName
+//             key={key}
+//             uniquePostCode={key}
+//             playlists={this.state.playlists}
+//             name={this.state.playlistName} />
+//         )
+//       })
+//       return playlistName;
+//   }

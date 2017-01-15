@@ -3,11 +3,14 @@ import React from 'react';
 class Playlist extends React.Component {
 
   render() {
-    const { addSong } = this.props;
+    const { addSong, playlistName } = this.props;
     return (
-      <ul className="flexUl">
-        {addSong()}
-      </ul>
+      <div>
+        <h1>{ playlistName }</h1>
+        <ul className="flexUl">
+          {addSong()}
+        </ul>
+      </div>
     )
   }
 }

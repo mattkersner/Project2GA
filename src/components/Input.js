@@ -30,8 +30,7 @@ class Input extends React.Component {
         <input
           type="text"
           ref={(input) => this.artist = input}
-          placeholder="Artist"
-          autoFocus="autofocus" />
+          placeholder="Artist" />
         <input
           type="text"
           ref={(input) => this.song = input}
