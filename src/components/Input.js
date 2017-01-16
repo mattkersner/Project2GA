@@ -6,7 +6,7 @@ class Input extends React.Component {
   createPlaylist() {
     axios({
       method: 'POST',
-      url: 'https://music-playlist-app-4acd6.firebaseio.com/playlists.json',
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/songs.json`,
       data: {
         artist: this.artist.value,
         song: this.song.value
@@ -17,6 +17,16 @@ class Input extends React.Component {
       this.song.value = "";
     })
   }
+
+  // getSongInfo() {
+  //   axios({
+  //     method: 'GET',
+  //     url: `https://itunes.apple.com/search?term=${this.artist.value}`,
+  //     dataType: 'jsonp'
+  //   }).then((res) => {
+  //     console.log(res);
+  //   })
+  // }
 
   keyPress(e) {
     if (e.charCode === 13) {

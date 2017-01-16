@@ -4,7 +4,7 @@ import Song from './components/Song';
 import Playlist from './components/Playlist';
 import InputPlaylistName from './components/InputPlaylistName';
 import axios from 'axios';
-import logo from './music.png';
+import logo from './music.svg';
 import './App.css';
 
 class App extends Component {
@@ -13,25 +13,36 @@ class App extends Component {
     super();
     this.state = {
       playlists: {},
-      playlistName: "",
-      enterName: true
+      playlistName: null,
     }
     this.getSongs = this.getSongs.bind(this);
     this.addSong = this.addSong.bind(this);
     this.setPlaylistName = this.setPlaylistName.bind(this);
     this.editPlaylistName = this.editPlaylistName.bind(this);
+    this.getName = this.getName.bind(this);
   }
 
   componentDidMount() {
     this.getSongs();
+    this.getName();
   }
 
   getSongs() {
-    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists.json')
+    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/songs.json')
     .then((res) => {
       console.log(res);
       this.setState({
-        playlists: res.data,
+        playlists: res.data
+      })
+    })
+  }
+
+  getName() {
+    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json')
+    .then((res) => {
+      console.log(res.data.name);
+      this.setState({
+        playlistName: res.data.name,
       })
     })
   }
@@ -62,7 +73,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.enterName) {
+    if (this.state.playlistName === null) {
       return (
         <div className="App">
           <div className="App-header">
@@ -70,6 +81,7 @@ class App extends Component {
             <h2>Create a New Playlist</h2>
           </div>
           <InputPlaylistName
+            getName={this.getName}
             setPlaylistName={this.setPlaylistName}
             playlistName={this.state.playlistName}
             setPlaylistCode={this.setPlaylistCode} />
@@ -82,7 +94,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Create a New Playlist</h2>
           </div>
-          <Input getSongs={this.getSongs} />
+          <Input getSongs={this.getSongs} playlistName={this.state.playlistName} />
           <Playlist
             addSong={this.addSong}
             playlistName={this.state.playlistName}

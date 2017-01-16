@@ -11,7 +11,7 @@ class Song extends React.Component {
   }
 
   handleDelete(key) {
-    axios.delete(`https://music-playlist-app-4acd6.firebaseio.com/playlists/${key}.json`)
+    axios.delete(`https://music-playlist-app-4acd6.firebaseio.com/playlists/songs/${key}.json`)
     .then((res) => {
       this.props.getSongs();
     })
@@ -20,7 +20,7 @@ class Song extends React.Component {
   handleEdit(key) {
     console.log(key);
     this.setState({edit: !this.state.edit})
-    axios.patch(`https://music-playlist-app-4acd6.firebaseio.com/playlists/${key}.json`, {
+    axios.patch(`https://music-playlist-app-4acd6.firebaseio.com/playlists/songs/${key}.json`, {
       artist: this.artist.value,
       song: this.song.value
     })
