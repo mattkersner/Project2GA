@@ -20,6 +20,7 @@ class App extends Component {
     this.getName = this.getName.bind(this);
     this.getSongInfo = this.getSongInfo.bind(this);
     this.editName = this.editName.bind(this);
+    this.deletePlaylist = this.deletePlaylist.bind(this);
   }
 
   componentDidMount() {
@@ -40,7 +41,6 @@ class App extends Component {
   getName() {
     axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json')
     .then((res) => {
-      console.log(res.data.name);
       this.setState({
         playlistName: res.data.name,
       })
@@ -62,12 +62,31 @@ class App extends Component {
     })
   }
 
+  deletePlaylist() {
+    axios.delete(`https://music-playlist-app-4acd6.firebaseio.com/playlists/.json`)
+    .then((res) => {
+      this.setState({
+        playlistName: null,
+      })
+    })
+  }
+
   getSongInfo(artist) {
     axios({
       method: 'GET',
       url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
     }).then((res) => {
       console.log(res.data.artists);
+      this.setState({
+        artistName: res.data.artists.items[0].name,
+        genre: res.data.artists.items[0].genres[0],
+        genre2: res.data.artists.items[0].genres[1],
+        genre3: res.data.artists.items[0].genres[2],
+        image: res.data.artists.items[0].images[0].url,
+        spotifyLink: res.data.artists.items[0].external_urls.spotify,
+        followers: res.data.artists.items[0].followers.total,
+        popularity: res.data.artists.items[0].popularity
+      })
     })
   }
 
@@ -89,13 +108,24 @@ class App extends Component {
     }
   }
 
-  // setPlaylistName(name) {
-  //   this.setState({ playlistName: name, enterName: false})
-  // }
-
-  // editPlaylistName(name) {
-  //   this.setState({ playlistName: name })
-  // }
+  renderSongInfo() {
+    if (this.state.spotifyLink) {
+      return (
+        <div className="songInfo">
+          <h1>{this.state.artistName}</h1>
+          <p>Followers on Spotify: {this.state.followers}</p>
+          <p>Popularity on Spotify: {this.state.popularity}%</p>
+          <a href={this.state.spotifyLink}>Spotify Link</a>
+          <ul> Genre:
+            <li>{this.state.genre}</li>
+            <li>{this.state.genre2}</li>
+            <li>{this.state.genre3}</li>
+          </ul>
+          <img src={this.state.image} alt="album cover art" />
+        </div>
+      )
+    }
+  }
 
   render() {
     if (this.state.playlistName === null) {
@@ -116,12 +146,13 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Create a New Playlist</h2>
           </div>
-          <Input getSongs={this.getSongs} playlistName={this.state.playlistName} />
+          <Input getSongs={this.getSongs}  />
           <Playlist
             addSong={this.addSong}
             editName={this.editName}
-            playlistName={this.state.playlistName}
-            editPlaylistName={this.editPlaylistName} />
+            deletePlaylist={this.deletePlaylist}
+            playlistName={this.state.playlistName} />
+           {this.renderSongInfo()}
         </div>
         );
       }

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Playlist extends React.Component {
@@ -35,22 +34,22 @@ class Playlist extends React.Component {
         autoFocus="autoFocus"
         onKeyPress={(e) => this.keyPress(e)} />
       <button
-          type="submit"
-          onClick={(e) => this.handleEdit(e)}
-          className="flat">
-          Save
-        </button>
-        <button
-          type="submit"
-          onClick={() => this.setState({edit: !this.state.edit})}
-          className="flat">
-          Cancel
-        </button>
+        type="submit"
+        onClick={(e) => this.handleEdit(e)}
+        className="flat">
+        Save
+      </button>
+      <button
+        type="submit"
+        onClick={() => this.setState({edit: !this.state.edit})}
+        className="flat">
+        Cancel
+      </button>
       <ul className="flexUl">
       <ReactCSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}>
+        transitionName="fade"
+        transitionEnterTimeout={1000}
+        transitionLeaveTimeout={1000}>
         {addSong()}
       </ReactCSSTransitionGroup>
       </ul>
@@ -59,15 +58,21 @@ class Playlist extends React.Component {
   }
 
   normalRender() {
-    const { addSong, playlistName } = this.props;
+    const { addSong, playlistName, deletePlaylist } = this.props;
     return (
       <div>
       <h1 className="inline-block">{playlistName}</h1>
       <button
         type="submit"
-        onClick={(e) => this.setState({ edit: !this.state.edit })}
+        onClick={() => this.setState({ edit: !this.state.edit })}
         className="flat">
       Edit
+      </button>
+      <button
+        type="submit"
+        onClick={() => deletePlaylist()}
+        className="flat">
+      Delete
       </button>
       <ul className="flexUl">
       <ReactCSSTransitionGroup
