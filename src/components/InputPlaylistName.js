@@ -3,11 +3,6 @@ import axios from 'axios';
 
 class InputPlaylistName extends React.Component {
 
-  // createPlaylist() {
-    //maybe pass the name after it is set to the state a prop to input
-    //then can post each artist and song key value pair to
-    //url/playlists/${playlistName}
-
   namePlaylist() {
       axios({
       method: 'PATCH',
@@ -17,7 +12,7 @@ class InputPlaylistName extends React.Component {
       }
     }).then((res) => {
       console.log(res);
-      this.props.setPlaylistName(this.playlistName.value);
+      this.props.getName();
       this.playlistName.value = "";
     })
   }

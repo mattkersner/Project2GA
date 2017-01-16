@@ -66,11 +66,17 @@ class Song extends React.Component {
   }
 
   normalRender() {
-    const { playlists, uniquePostCode } = this.props;
+    const { playlists, uniquePostCode, getSongInfo } = this.props;
     return (
       <li className="flexLi">
         <p>{playlists[uniquePostCode].song} by {playlists[uniquePostCode].artist}</p>
         <div className="buttons">
+        <button
+          type="submit"
+          onClick={() => getSongInfo(playlists[uniquePostCode].artist)}
+          className="flat">
+        Info
+        </button>
         <button
           type="submit"
           onClick={() => this.setState({edit: !this.state.edit})}

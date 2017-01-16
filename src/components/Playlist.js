@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Playlist extends React.Component {
@@ -12,13 +13,13 @@ class Playlist extends React.Component {
 
   handleEdit(e) {
     e.preventDefault();
-    this.props.editPlaylistName(this.name.value);
+    this.props.editName(this.name.value);
     this.setState({ edit: !this.state.edit });
   }
 
   keyPress(e) {
     if (e.charCode === 13) {
-      this.props.editPlaylistName(this.name.value);
+      this.props.editName(this.name.value);
       this.setState({ edit: !this.state.edit });
     }
   }

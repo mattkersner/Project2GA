@@ -18,16 +18,6 @@ class Input extends React.Component {
     })
   }
 
-  // getSongInfo() {
-  //   axios({
-  //     method: 'GET',
-  //     url: `https://itunes.apple.com/search?term=${this.artist.value}`,
-  //     dataType: 'jsonp'
-  //   }).then((res) => {
-  //     console.log(res);
-  //   })
-  // }
-
   keyPress(e) {
     if (e.charCode === 13) {
       this.createPlaylist();

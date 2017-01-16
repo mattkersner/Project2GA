@@ -17,14 +17,14 @@ class App extends Component {
     }
     this.getSongs = this.getSongs.bind(this);
     this.addSong = this.addSong.bind(this);
-    this.setPlaylistName = this.setPlaylistName.bind(this);
-    this.editPlaylistName = this.editPlaylistName.bind(this);
     this.getName = this.getName.bind(this);
+    this.getSongInfo = this.getSongInfo.bind(this);
+    this.editName = this.editName.bind(this);
   }
 
   componentDidMount() {
-    this.getSongs();
     this.getName();
+    this.getSongs();
   }
 
   getSongs() {
@@ -47,6 +47,30 @@ class App extends Component {
     })
   }
 
+  editName(name) {
+    axios({
+      method: 'PATCH',
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json`,
+      data: {
+        name: name,
+      }
+    }).then((res) => {
+      console.log(res);
+      this.setState({
+        playlistName: res.data.name
+      })
+    })
+  }
+
+  getSongInfo(artist) {
+    axios({
+      method: 'GET',
+      url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
+    }).then((res) => {
+      console.log(res.data.artists);
+    })
+  }
+
   addSong() {
     if (this.state.playlists) {
       let playlist = Object.keys(this.state.playlists)
@@ -57,20 +81,21 @@ class App extends Component {
               key={key}
               getSongs={this.getSongs}
               uniquePostCode={key}
-              playlists={this.state.playlists} />
+              playlists={this.state.playlists}
+              getSongInfo={this.getSongInfo} />
         )
       })
     return playlist;
     }
   }
 
-  setPlaylistName(name) {
-    this.setState({ playlistName: name, enterName: false})
-  }
+  // setPlaylistName(name) {
+  //   this.setState({ playlistName: name, enterName: false})
+  // }
 
-  editPlaylistName(name) {
-    this.setState({ playlistName: name })
-  }
+  // editPlaylistName(name) {
+  //   this.setState({ playlistName: name })
+  // }
 
   render() {
     if (this.state.playlistName === null) {
@@ -81,10 +106,7 @@ class App extends Component {
             <h2>Create a New Playlist</h2>
           </div>
           <InputPlaylistName
-            getName={this.getName}
-            setPlaylistName={this.setPlaylistName}
-            playlistName={this.state.playlistName}
-            setPlaylistCode={this.setPlaylistCode} />
+            getName={this.getName} />
         </div>
       );
       } else {
@@ -97,6 +119,7 @@ class App extends Component {
           <Input getSongs={this.getSongs} playlistName={this.state.playlistName} />
           <Playlist
             addSong={this.addSong}
+            editName={this.editName}
             playlistName={this.state.playlistName}
             editPlaylistName={this.editPlaylistName} />
         </div>
