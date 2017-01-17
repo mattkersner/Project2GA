@@ -69,7 +69,7 @@ class Song extends React.Component {
     const { playlists, uniquePostCode, getSongInfo } = this.props;
     return (
       <li className="flexLi">
-        <p>{playlists[uniquePostCode].song} by {playlists[uniquePostCode].artist}</p>
+        <p>{playlists[uniquePostCode].song}<span className="byline"> by </span>{playlists[uniquePostCode].artist}</p>
         <div className="buttons">
         <button
           type="submit"
