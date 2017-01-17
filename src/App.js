@@ -38,11 +38,14 @@ class App extends Component {
     })
   }
 
-  getName() {
-    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json')
+  getName(playlist) {
+    axios.get(`https://music-playlist-app-4acd6.firebaseio.com/playlists/.json`)
     .then((res) => {
+      console.log(res);
+      let firstPlayListId = Object.keys(res.data)[0];
       this.setState({
-        playlistName: res.data.name,
+        playlistName: res.data[firstPlayListId].name,
+        currentPlaylistId: firstPlayListId,
       })
     })
   }
@@ -50,7 +53,7 @@ class App extends Component {
   editName(name) {
     axios({
       method: 'PATCH',
-      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json`,
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/${this.state.currentPlaylistId}.json`,
       data: {
         name: name,
       }
@@ -94,15 +97,18 @@ class App extends Component {
     if (this.state.playlists) {
       let playlist = Object.keys(this.state.playlists)
       .reverse()
-      .map((key, i) => {
-        return (
-            <Song
-              key={key}
-              getSongs={this.getSongs}
-              uniquePostCode={key}
-              playlists={this.state.playlists}
-              getSongInfo={this.getSongInfo} />
-        )
+      .map((playlistId, i) => {
+        Object.keys(this.state.playlists[playlistId].songs).map((songId) => {
+          return (
+              <Song
+                key={songId}
+                getSongs={this.getSongs}
+                playlistId={playlistId}
+                uniquePostCode={songId}
+                playlists={this.state.playlists}
+                getSongInfo={this.getSongInfo} />
+          )
+        })
       })
     return playlist;
     }
@@ -136,6 +142,7 @@ class App extends Component {
             <h2>Create a New Playlist</h2>
           </div>
           <InputPlaylistName
+            playlists={this.state.playlists}
             getName={this.getName} />
         </div>
       );
@@ -146,7 +153,9 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h2>Create a New Playlist</h2>
             </div>
-            <Input getSongs={this.getSongs}  />
+            <Input
+              currentPlaylistId={this.state.currentPlaylistId}
+              getSongs={this.getSongs} />
             <div className="flexPlaylist">
             <Playlist
               addSong={this.addSong}
