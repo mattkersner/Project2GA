@@ -3,10 +3,10 @@ import axios from 'axios';
 
 class Input extends React.Component {
 
-  createSong(currentPlaylistId) {
+  createPlaylist() {
     axios({
       method: 'POST',
-      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/${currentPlaylistId}/songs.json`,
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/songs.json`,
       data: {
         artist: this.artist.value,
         song: this.song.value
@@ -20,7 +20,7 @@ class Input extends React.Component {
 
   keyPress(e) {
     if (e.charCode === 13) {
-      this.createSong(this.props.currentPlaylistId);
+      this.createPlaylist();
     }
   }
 
@@ -40,7 +40,7 @@ class Input extends React.Component {
         <button
           id="button"
           type="submit"
-          onClick={() => this.createSong(this.props.currentPlaylistId)}
+          onClick={() => this.createPlaylist()}
           className="flat">
           Submit
         </button>

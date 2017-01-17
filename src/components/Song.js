@@ -11,17 +11,17 @@ class Song extends React.Component {
   }
 
   handleDelete(key) {
-    axios.delete(`https://music-playlist-app-4acd6.firebaseio.com/playlists/${this.props.playlistId}/songs/${key}.json`)
+    axios.delete(`https://music-playlist-app-4acd6.firebaseio.com/playlists/songs/${key}.json`)
     .then((res) => {
       this.props.getSongs();
     })
   }
 
   render() {
-    const { playlists, uniquePostCode, playlistId, getSongInfo } = this.props;
+    const { playlists, uniquePostCode, getSongInfo } = this.props;
     return (
       <li className="flexLi">
-        <p>{playlists[playlistId].songs[uniquePostCode].song}<span className="byline"> by </span>{playlists[uniquePostCode].artist}</p>
+        <p>{playlists[uniquePostCode].song}<span className="byline"> by </span>{playlists[uniquePostCode].artist}</p>
         <div className="buttons">
         <button
           type="submit"
