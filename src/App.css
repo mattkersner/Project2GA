@@ -1,24 +1,27 @@
 .App {
   text-align: center;
-  color: #494C4D;
+  color: white;
+  font-family: 'Slabo 27px', serif;
+  background-color: #3c485e;
+  color: #FFFFCC;
 }
 
 .App-logo {
-  animation: App-logo-spin 2s linear;
+  animation: App-logo-spin 3s linear;
   height: 80px;
 }
 
 .App-header {
-  background-color: #90C3D4;
   height: 150px;
   padding: 20px;
-  margin-bottom: 15px;
-  color: #494C4D;
+  padding-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to { transform: rotate(720deg); }
 }
 
 ul {
@@ -34,19 +37,20 @@ input[type="text"] {
   font-size: 1.2em;
   padding: 10px;
   border: none;
-  border-bottom: solid 2px #c9c9c9;
+  border-bottom: solid 2px #969696;
   transition: border 0.3s;
   margin: 2px;
+  background-color: #3c485e;
+  color: #FFFFCC;
 }
 
-input[type="text"]:focus,
-input[type="text"].focus {
-  border-bottom: solid 2px #969696;
+input[type="text"]:focus {
+  border-bottom: solid 2px #c9c9c9;
   outline: none;
 }
 
 .flat {
-  color: #fff;
+  color: #FFFFCC;
   background-color: #6496c8;
   text-shadow: -1px 1px #417cb8;
   border: none;
@@ -76,11 +80,9 @@ textarea {
   animation: slide 2s linear;
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
-  margin-right: 10px;
   font-size: 1.2em;
   margin: auto;
-  width: 110%;
+  width: 108%;
 }
 
 .flexLi {
@@ -90,12 +92,12 @@ textarea {
   padding: 15px;
   border-bottom: 1px solid grey;
   margin: 10px;
-  margin-top: 5px;
-  padding-left: 0;
+  margin-top: 0;
+  padding-left: 10px;
 }
 
 .flexLi:hover {
-  background-color: lightblue;
+  background-color: rgba(255, 255, 255, .5);
 }
 
 .flexLi p {
@@ -111,8 +113,8 @@ textarea {
 }
 
 img {
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
 }
 
 button {
@@ -123,8 +125,8 @@ button {
   display: inline-block;
   margin-right: 40px;
   margin-top: 45px;
-  margin-bottom: 20px;
-  margin-left: 30px;
+  margin-bottom: 10px;
+  margin-left: 35px;
   font-size: 2.7em;
   text-transform: capitalize;
 }
@@ -134,6 +136,11 @@ button {
   margin-bottom: 10px;
   border: 1px solid grey;
   width: 520px;
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.songInfo ul {
+  font-size: 1em;
 }
 
 .byline {
@@ -158,6 +165,15 @@ button {
 #button {
   height: 25px;
   width: 50px;
+}
+
+a {
+  text-decoration: underline;
+  color: #FFFFCC;
+}
+
+a:hover {
+  color: blue;
 }
 
 .buttons {

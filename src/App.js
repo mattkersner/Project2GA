@@ -68,6 +68,7 @@ class App extends Component {
       this.setState({
         playlistName: null,
       })
+    this.getSongs();
     })
   }
 
@@ -112,7 +113,7 @@ class App extends Component {
     if (this.state.spotifyLink) {
       return (
         <div className="songInfo">
-          <h1>{this.state.artistName}</h1>
+          <h1 className="infoHeadline">{this.state.artistName}</h1>
           <p>Followers on Spotify: {this.state.followers}</p>
           <p>Popularity on Spotify: {this.state.popularity}%</p>
           <a href={this.state.spotifyLink}>Spotify Link</a>
