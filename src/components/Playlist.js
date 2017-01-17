@@ -61,7 +61,7 @@ class Playlist extends React.Component {
     const { addSong, playlistName, deletePlaylist } = this.props;
     return (
       <div>
-        <div className="flexHeadline">
+        <div>
           <h1 className="inline-block">{playlistName}</h1>
           <button
             type="submit"

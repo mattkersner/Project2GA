@@ -12,6 +12,7 @@
   background-color: #90C3D4;
   height: 150px;
   padding: 20px;
+  margin-bottom: 15px;
   color: #494C4D;
 }
 
@@ -76,11 +77,10 @@ textarea {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
-  margin-right: 30px;
+  margin-right: 10px;
   font-size: 1.2em;
   margin: auto;
-  width: 80%;
-  margin-top: 10px;
+  width: 110%;
 }
 
 .flexLi {
@@ -88,8 +88,9 @@ textarea {
   justify-content: space-between;
   list-style-type: none;
   padding: 15px;
-  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
   margin: 10px;
+  padding-left: 0;
 }
 
 .flexLi:hover {
@@ -97,23 +98,41 @@ textarea {
 }
 
 .flexLi p {
-  margin-left: 30px;
   margin-bottom: 0;
   padding-bottom: 0;
   text-transform: capitalize;
+}
+
+.flexPlaylist {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+img {
+  height: 400px;
+  width: 400px;
 }
 
 button {
   cursor: pointer;
 }
 
-h1 {
+.inline-block {
   display: inline-block;
-  margin-right: 45px;
+  margin-right: 40px;
   margin-top: 45px;
-  margin-bottom: 0;
-  font-size: 2.5em;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  font-size: 2.7em;
   text-transform: capitalize;
+}
+
+.songInfo {
+  margin-top: 45px;
+  margin-bottom: 10px;
+  border: 1px solid grey;
+  width: 520px;
 }
 
 .byline {

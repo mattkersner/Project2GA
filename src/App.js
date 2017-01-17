@@ -142,18 +142,20 @@ class App extends Component {
       } else {
         return (
           <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Create a New Playlist</h2>
+            <div className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h2>Create a New Playlist</h2>
+            </div>
+            <Input getSongs={this.getSongs}  />
+            <div className="flexPlaylist">
+            <Playlist
+              addSong={this.addSong}
+              editName={this.editName}
+              deletePlaylist={this.deletePlaylist}
+              playlistName={this.state.playlistName} />
+             {this.renderSongInfo()}
+            </div>
           </div>
-          <Input getSongs={this.getSongs}  />
-          <Playlist
-            addSong={this.addSong}
-            editName={this.editName}
-            deletePlaylist={this.deletePlaylist}
-            playlistName={this.state.playlistName} />
-           {this.renderSongInfo()}
-        </div>
         );
       }
   }
