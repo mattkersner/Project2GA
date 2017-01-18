@@ -197,3 +197,9 @@ a:hover {
   opacity: 0;
   transition: opacity 1s ease-in;
 }
+
+.footer p {
+  text-align: left;
+  margin-top: 500px;
+  font-size: 1em;
+}

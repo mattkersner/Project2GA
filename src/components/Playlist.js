@@ -10,8 +10,7 @@ class Playlist extends React.Component {
     }
   }
 
-  handleEdit(e) {
-    e.preventDefault();
+  handleEdit() {
     this.props.editName(this.name.value);
     this.setState({ edit: !this.state.edit });
   }
@@ -35,7 +34,7 @@ class Playlist extends React.Component {
         onKeyPress={(e) => this.keyPress(e)} />
       <button
         type="submit"
-        onClick={(e) => this.handleEdit(e)}
+        onClick={() => this.handleEdit()}
         className="flat">
         Save
       </button>

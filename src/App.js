@@ -3,6 +3,7 @@ import Input from './components/Input';
 import Song from './components/Song';
 import Playlist from './components/Playlist';
 import InputPlaylistName from './components/InputPlaylistName';
+import Footer from './components/Footer';
 import axios from 'axios';
 import logo from './music.svg';
 import './App.css';
@@ -67,6 +68,7 @@ class App extends Component {
     .then((res) => {
       this.setState({
         playlistName: null,
+        spotifyLink: null
       })
     this.getSongs();
     })
@@ -138,6 +140,7 @@ class App extends Component {
           </div>
           <InputPlaylistName
             getName={this.getName} />
+          <Footer />
         </div>
       );
       } else {
@@ -156,6 +159,7 @@ class App extends Component {
               playlistName={this.state.playlistName} />
              {this.renderSongInfo()}
             </div>
+            <Footer />
           </div>
         );
       }
