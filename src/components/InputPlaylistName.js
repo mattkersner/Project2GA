@@ -42,4 +42,8 @@ class InputPlaylistName extends React.Component {
   }
 }
 
+InputPlaylistName.propTypes = {
+  getName: React.PropTypes.func.isRequired
+}
+
 export default InputPlaylistName;

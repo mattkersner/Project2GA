@@ -49,4 +49,8 @@ class Input extends React.Component {
   }
 }
 
+Input.propTypes = {
+  getSongs: React.PropTypes.func.isRequired
+}
+
 export default Input;

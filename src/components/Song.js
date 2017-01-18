@@ -41,4 +41,11 @@ class Song extends React.Component {
   }
 }
 
+Song.propTypes = {
+  getSongs: React.PropTypes.func.isRequired,
+  getSongInfo: React.PropTypes.func.isRequired,
+  playlists: React.PropTypes.object.isRequired,
+  uniquePostCode: React.PropTypes.string.isRequired,
+}
+
 export default Song;

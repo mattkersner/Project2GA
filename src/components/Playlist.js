@@ -95,7 +95,13 @@ class Playlist extends React.Component {
       return (this.editRender());
     }
   }
+}
 
+Playlist.propTypes = {
+  addSong: React.PropTypes.func.isRequired,
+  editName: React.PropTypes.func.isRequired,
+  deletePlaylist: React.PropTypes.func.isRequired,
+  playlistName: React.PropTypes.string.isRequired,
 }
 
 export default Playlist;
