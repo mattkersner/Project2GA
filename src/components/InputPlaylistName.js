@@ -5,8 +5,8 @@ class InputPlaylistName extends React.Component {
 
   namePlaylist() {
       axios({
-      method: 'PATCH',
-      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json`,
+      method: 'POST',
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/.json`,
       data: {
         name: this.playlistName.value
       }

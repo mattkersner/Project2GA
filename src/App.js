@@ -30,20 +30,22 @@ class App extends Component {
   }
 
   getSongs() {
-    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/songs.json')
+    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists.json')
     .then((res) => {
-      console.log(res);
       this.setState({
         playlists: res.data
       })
     })
   }
 
-  getName() {
-    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json')
+  getName(playlist) {
+    axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/.json')
     .then((res) => {
+      console.log(res);
+      let firstPlaylistId = Object.keys(res.data)[0];
       this.setState({
-        playlistName: res.data.name,
+        playlistName: res.data[firstPlaylistId].name,
+        currentPlaylistId: firstPlaylistId
       })
     })
   }
@@ -51,7 +53,7 @@ class App extends Component {
   editName(name) {
     axios({
       method: 'PATCH',
-      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/playlistName.json`,
+      url: `https://music-playlist-app-4acd6.firebaseio.com/playlists/${this.state.currentPlaylistId}.json`,
       data: {
         name: name,
       }
@@ -95,19 +97,24 @@ class App extends Component {
 
   addSong() {
     if (this.state.playlists) {
-      let playlist = Object.keys(this.state.playlists)
-      .reverse()
-      .map((key, i) => {
+      let playlist = [];
+      Object.keys(this.state.playlists)
+      .map((playlistId, i) => {
+        playlist = Object.keys(this.state.playlists[playlistId].songs)
+        .reverse()
+        .map((songId) => {
         return (
             <Song
-              key={key}
+              key={songId}
               getSongs={this.getSongs}
-              uniquePostCode={key}
+              playlistId={playlistId}
+              songId={songId}
               playlists={this.state.playlists}
               getSongInfo={this.getSongInfo} />
         )
+        })
       })
-    return playlist;
+      return playlist;
     }
   }
 
@@ -124,7 +131,7 @@ class App extends Component {
             <li>{this.state.genre2}</li>
             <li>{this.state.genre3}</li>
           </ul>
-          <img src={this.state.image} alt="album cover art" />
+          <img className="artistImage" src={this.state.image} alt="album cover art" />
         </div>
       )
     }
@@ -150,7 +157,9 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h2>Create a New Playlist</h2>
             </div>
-            <Input getSongs={this.getSongs}  />
+            <Input
+              currentPlaylistId={this.state.currentPlaylistId}
+              getSongs={this.getSongs}  />
             <div className="flexPlaylist">
             <Playlist
               addSong={this.addSong}
