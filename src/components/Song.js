@@ -31,7 +31,7 @@ class Song extends React.Component {
         </button>
         <button
           type="submit"
-          onClick={() => this.handleDelete(playlists[playlistId].songs[songId])}
+          onClick={() => this.handleDelete(songId)}
           className="flat">
         Delete
         </button>
