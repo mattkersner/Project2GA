@@ -42,6 +42,7 @@ class App extends Component {
     axios.get('https://music-playlist-app-4acd6.firebaseio.com/playlists/.json')
     .then((res) => {
       console.log(res);
+      //this is going to need to be adjusted when multiple playlist capabilities are added
       let firstPlaylistId = Object.keys(res.data)[0];
       this.setState({
         playlistName: res.data[firstPlaylistId].name,
